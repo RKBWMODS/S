@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Website Keren - Satu File</title>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+html, body {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f2f2f2, #e0e0e0);
+  color: #333;
+}
+#loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.loader-bar {
+  width: 0;
+  height: 4px;
+  background-color: #3498db;
+  animation: loadingAnimation 2s linear forwards;
+}
+@keyframes loadingAnimation {
+  0% { width: 0; }
+  100% { width: 200px; }
+}
+#mainContent {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: pageEnter 1s ease-out forwards;
+  position: relative;
+}
+@keyframes pageEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.header {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.clock {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+#introSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #333;
+  border-bottom: 2px solid #555;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeInDown 0.8s ease forwards;
+  animation-delay: 0.2s;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#introImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 10%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+}
+#introText {
+  color: #fff;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.4;
+  max-width: 310px;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
+}
+.card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.profile-pic {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+.card-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+#detailPage {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background-color: #f2f2f2;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: detailEnter 0.8s ease forwards;
+}
+@keyframes detailEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.detail-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  text-align: center;
+}
+#detailImage {
+  width: 270px;
+  height: 270px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+#detailTextContainer {
+  background-color: #000;
+  color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  max-width: 80%;
+}
+.btn-group {
+  display: flex;
+  gap: 1rem;
+}
+.simpan-btn, .kembali-btn {
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: opacity 0.2s ease;
+}
+.simpan-btn:hover, .kembali-btn:hover {
+  opacity: 0.9;
+}
+.kembali-btn {
+  background-color: #95a5a6;
+}
+@media(max-width:480px){
+  .clock {
+    font-size: 1.2rem;
+  }
+  .card-text {
+    font-size: 0.9rem;
+  }
+  #detailTextContainer {
+    font-size: 0.9rem;
+  }
+}
+copyright {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.85rem;
+  color: #555;
+  opacity: 0.8;
+  z-index: 9999;
+}
+</style>
+</head>
+<body>
+<div id="loader">
+  <div class="loader-bar"></div>
+</div>
+<div id="mainContent">
+  <div class="header">
+    <div class="clock" id="digitalClock">00:00:00</div>
+  </div>
+  <div id="introSection">
+    <img id="introImage" src="https://i.ibb.co/Vc6J5FjF/3e852d1583a1.png" alt="home"/>
+    <div id="introText">
+      INI ADALAH WEBSITE BUATAN RIZQI<br/>
+      MAAF YA KAK KALO JELEK AKU UDAH <br/>
+      USAHAIN YANG TERBAIK KOK
+    </div>
+  </div>
+  <div class="cards" id="cardsContainer">
+    <div class="card" onclick="showDetailPage(0)">
+      <img
+        src="https://i.ibb.co/DHk9K485/75ead873d782.jpg"
+        alt="Putri3"
+        class="profile-pic"
+      />
+      <div class="card-text">UNTUK KAMU NIH</div>
+    </div>
+    <div class="card" onclick="showDetailPage(1)">
+      <img
+        src="https://i.ibb.co/pjfTdHYG/597365be66df.jpg"
+        alt="Putri2"
+        class="profile-pic"
+      />
+      <div class="card-text">UTUTU LOPYUU</div>
+    </div>
+    <div class="card" onclick="showDetailPage(2)">
+      <img
+        src="https://i.ibb.co/jP98RT63/8f435cc2af43.png"
+        alt="Putri1"
+        class="profile-pic"
+      />
+      <div class="card-text">CUANTIK ACUU><</div>
+    </div>
+  </div>
+</div>
+<div id="detailPage">
+  <div class="detail-content">
+    <img id="detailImage" src="" alt="tls"/>
+    <div id="detailTextContainer">
+      <div id="detailText"></div>
+    </div>
+    <div class="btn-group">
+      <button class="simpan-btn" onclick="alert('Tersimpan!')">SIMPAN</button>
+      <button class="kembali-btn" onclick="backToMainPage()">KEMBALI</button>
+    </div>
+  </div>
+</div>
+<div class="copyright">©RIZQI GANTENG</div>
+<script>
+const detailsData = [
+  {
+    teks: "Kamu Itu Kayak Bulan Yang\nMenyinari Dan Menemani Setiap\nMalam Malamku",
+    image: "https://i.ibb.co/TMK6Vkd4/3249371b6f68.jpg"
+  },
+  {
+    teks: "Ututu Si Tukang Toxic\nKurangi Toxicnya Ya Cantik\nMasa Iya Calon Ibu Ngajarin Yang Ga Bener",
+    image: "https://i.ibb.co/DHk9K485/75ead873d782.jpg"
+  },
+  {
+    teks: "Sipaling Suka Hiling Awas\nNanti Anak Minta Susu Bilangnya\nNgga Ada Duit",
+    image: "https://i.ibb.co/pjfTdHYG/597365be66df.jpg"
+  }
+];
+function updateClock(){
+  const now=new Date();
+  const utc=now.getTime()+now.getTimezoneOffset()*60000;
+  const wibTime=new Date(utc+3600000*7);
+  const hours=String(wibTime.getHours()).padStart(2,"0");
+  const minutes=String(wibTime.getMinutes()).padStart(2,"0");
+  const seconds=String(wibTime.getSeconds()).padStart(2,"0");
+  document.getElementById("digitalClock").textContent = hours+":"+minutes+":"+seconds;
+}
+setInterval(updateClock,1000);
+window.addEventListener("load",function(){
+  updateClock();
+  setTimeout(()=>{
+    document.getElementById("loader").style.display="none";
+    const mainContent=document.getElementById("mainContent");
+    mainContent.style.display="block";
+    mainContent.offsetHeight;
+    mainContent.style.animation="pageEnter 1s ease-out forwards";
+    const cards=document.querySelectorAll(".card");
+    cards.forEach((card,index)=>{
+      card.style.animationDelay=0.3*index+"s";
+    });
+  },1000);
+});
+function showDetailPage(index){
+  const detail=detailsData[index];
+  document.getElementById("detailText").innerText=detail.teks;
+  document.getElementById("detailImage").src=detail.image;
+  document.getElementById("mainContent").style.display="none";
+  const detailPage=document.getElementById("detailPage");
+  detailPage.style.display="block";
+  detailPage.offsetHeight;
+  detailPage.style.animation="detailEnter 0.8s ease forwards";
+}
+function backToMainPage(){
+  document.getElementById("detailPage").style.display="none";
+  const mainContent=document.getElementById("mainContent");
+  mainContent.style.display="block";
+  mainContent.offsetHeight;
+  mainContent.style.animation="pageEnter 0.8s ease forwards";
+}
+</script>
+</body>
+</html>
